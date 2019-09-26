@@ -83,7 +83,7 @@ def _bottom_up_sort(unsorted_json):
         new_list = []
         for i in xrange(len(unsorted_json)):
             new_list.append(_bottom_up_sort(unsorted_json[i]))
-        return sorted(new_list)
+        return sorted(new_list, key=sorted)
 
     elif isinstance(unsorted_json, dict):
         new_dict = {}
