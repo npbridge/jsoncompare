@@ -63,14 +63,14 @@ def _is_dict_same(expected, actual, ignore_value_of_keys):
         if not key in ignore_value_of_keys:
             # have to change order
             #are_same_flag, stack = _are_same(actual[key], expected[key], ignore_value_of_keys)
-            are_same_flag, stack = _are_same(expected[key], actual[key],ignore_value_of_keys)
+            are_same_flag, stack = _are_same(expected[key], actual[key], ignore_value_of_keys)
             if not are_same_flag:
                 return False, \
                        stack.append(StackItem('Different values', expected[key], actual[key]))
     return True, Stack()
 
 def _is_list_same(expected, actual, ignore_value_of_keys):
-    for i in xrange(len(expected)):
+    for i in range(len(expected)):
         are_same_flag, stack = _are_same(expected[i], actual[i], ignore_value_of_keys)
         if not are_same_flag:
             return False, \
@@ -81,8 +81,9 @@ def _is_list_same(expected, actual, ignore_value_of_keys):
 def _bottom_up_sort(unsorted_json):
     if isinstance(unsorted_json, list):
         new_list = []
-        for i in xrange(len(unsorted_json)):
+        for i in range(len(unsorted_json)):
             new_list.append(_bottom_up_sort(unsorted_json[i]))
+        print(new_list)
         return sorted(new_list, key=sorted)
 
     elif isinstance(unsorted_json, dict):
@@ -109,7 +110,7 @@ def _are_same(expected, actual, ignore_value_of_keys, ignore_missing_keys=False)
                              actual))
 
     # Compare primitive types immediately
-    if type(expected) in (int, str, bool, long, float, unicode):
+    if type(expected) in (int, str, bool, float):
         return expected == actual, Stack()
 
     # Ensure collections have the same length (if applicable)
@@ -165,4 +166,3 @@ def contains(expected_original, actual_original, ignore_list_order_recursively=F
 
 def json_are_same(a, b, ignore_list_order_recursively=False, ignore_value_of_keys=[]):
     return are_same(json.loads(a), json.loads(b), ignore_list_order_recursively, ignore_value_of_keys)
-
