@@ -83,7 +83,7 @@ def _bottom_up_sort(unsorted_json):
         new_list = []
         for i in range(len(unsorted_json)):
             new_list.append(_bottom_up_sort(unsorted_json[i]))
-        print(new_list)
+        #print(new_list)
         return sorted(new_list, key=sorted)
 
     elif isinstance(unsorted_json, dict):
@@ -115,7 +115,7 @@ def _are_same(expected, actual, ignore_value_of_keys, ignore_missing_keys=False)
 
     # Ensure collections have the same length (if applicable)
     if ignore_missing_keys:
-        # Ensure collections has minimum length (if applicable) 
+        # Ensure collections has minimum length (if applicable)
         # This is a short-circuit condition because (b contains a)
         if len(expected) > len(actual):
             return False, \
@@ -135,7 +135,7 @@ def _are_same(expected, actual, ignore_value_of_keys, ignore_missing_keys=False)
                                   expected,
                                   actual))
 
-    
+
 
     if isinstance(expected, dict):
         return _is_dict_same(expected, actual, ignore_value_of_keys)
