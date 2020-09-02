@@ -1,6 +1,6 @@
 ##Install
 ```bash
-pip install jsoncompare
+pip install git+https://github.com/npbridge/jsoncompare
 ```
 
 ##Explanation
